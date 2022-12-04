@@ -102,6 +102,10 @@ export default {
       type: Boolean,
       default: false
     },
+    syncHitToInput: {
+      type: Boolean,
+      default: true
+    },
     data: {
       type: Array,
       required: true,
@@ -228,7 +232,10 @@ export default {
         this.$emit('input', evt.text)
       }
 
-      this.inputValue = evt.text
+      if (this.syncHitToInput) {
+        this.inputValue = evt.text
+      }
+      
       this.$emit('hit', evt.data)
 
       if (this.autoClose) {
