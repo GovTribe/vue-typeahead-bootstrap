@@ -102,9 +102,9 @@ export default {
       type: Boolean,
       default: false
     },
-    syncHitToInput: {
+    preserveInput: {
       type: Boolean,
-      default: true
+      default: false
     },
     data: {
       type: Array,
@@ -228,14 +228,13 @@ export default {
     },
 
     handleHit(evt) {
-      if (typeof this.value !== 'undefined') {
-        this.$emit('input', evt.text)
+      if (this.preserveInput === false) {
+          if (typeof this.value !== 'undefined') {
+              this.$emit('input', evt.text)
+          }
+          this.inputValue = evt.text
       }
 
-      if (this.syncHitToInput) {
-        this.inputValue = evt.text
-      }
-      
       this.$emit('hit', evt.data)
 
       if (this.autoClose) {
