@@ -58,7 +58,7 @@ export default {
 
   computed: {
     textClasses() {
-      const classes = [...this.baseTextClasses]
+      const classes = this.data.classes ? [...this.baseTextClasses, ...this.data.classes] : [...this.baseTextClasses];
       const backgroundVariantResolverResult = this.backgroundVariantResolver(this.data)
       const backgroundVariant =
           (typeof backgroundVariantResolverResult === 'string' && backgroundVariantResolverResult.trim()) ||
